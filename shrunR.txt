@@ -1,0 +1,264 @@
+Router#sh run
+Building configuration...
+
+Current configuration : 5356 bytes
+!
+! Last configuration change at 15:01:09 UTC Mon Jan 2 2006
+! NVRAM config last updated at 15:01:23 UTC Mon Jan 2 2006
+! NVRAM config last updated at 15:01:23 UTC Mon Jan 2 2006
+version 15.1
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname Router
+!
+boot-start-marker
+boot-end-marker
+!
+!
+!
+no aaa new-model
+!
+dot11 syslog
+ip source-route
+!
+!
+ip dhcp excluded-address 172.17.10.1 172.17.10.20
+ip dhcp excluded-address 172.17.20.1 172.17.20.20
+ip dhcp excluded-address 172.17.30.1 172.17.30.20
+ip dhcp excluded-address 172.17.40.1 172.17.40.20
+ip dhcp excluded-address 172.16.10.1 172.16.10.99
+ip dhcp excluded-address 172.16.20.1 172.16.20.99
+ip dhcp excluded-address 172.16.30.1 172.16.30.99
+ip dhcp excluded-address 172.16.40.1 172.16.40.99
+!
+ip dhcp pool Conexiones
+ network 172.17.10.0 255.255.255.0
+ default-router 172.17.10.1
+ dns-server 172.17.40.3
+!
+ip dhcp pool Administradores
+ network 172.17.20.0 255.255.255.0
+ default-router 172.17.20.1
+ dns-server 172.17.40.3
+!
+ip dhcp pool Usuarios
+ network 172.17.30.0 255.255.255.0
+ default-router 172.17.30.1
+ dns-server 172.17.40.3
+!
+ip dhcp pool Servidores
+ network 172.17.40.0 255.255.255.0
+ default-router 172.17.40.1
+ dns-server 172.17.40.3
+!
+ip dhcp pool Users
+ network 172.16.20.0 255.255.255.0
+ default-router 172.16.20.1
+!
+ip dhcp pool Enlaces
+ network 172.16.10.0 255.255.255.0
+ default-router 172.16.10.1
+!
+ip dhcp pool Admin
+ network 172.16.30.0 255.255.255.0
+ default-router 172.16.30.1
+!
+ip dhcp pool Server
+ network 172.16.40.0 255.255.255.0
+ default-router 172.16.40.1
+!
+!
+!
+ip cef
+ipv6 unicast-routing
+ipv6 cef
+ipv6 dhcp pool Conexiones
+ address prefix 2801:0:2E0:A:A::1/80
+ dns-server 2801:0:2E0:A:D::3
+ domain-name accesorios.autoupb.com
+!
+ipv6 dhcp pool Administradores
+ address prefix 2801:0:2E0:A:B::1/80
+ dns-server 2801:0:2E0:A:D::3
+ domain-name accesorios.autoupb.com
+!
+ipv6 dhcp pool Usuarios
+ address prefix 2801:0:2E0:A:C::1/80
+ dns-server 2801:0:2E0:A:D::3
+ domain-name accesorios.autoupb.com
+!
+ipv6 dhcp pool Servidores
+ address prefix 2801:0:2E0:A:D::1/80
+ dns-server 2801:0:2E0:A:D::3
+ domain-name accesorios.autoupb.com
+!
+ipv6 dhcp pool Enlaces
+ address prefix 2801:0:2E0:F:A::1/80
+!
+ipv6 dhcp pool Users
+ address prefix 2801:0:2E0:F:B::1/80
+!
+ipv6 dhcp pool Admin
+ address prefix 2801:0:2E0:F:C::1/80
+!
+ipv6 dhcp pool Server
+ address prefix 2801:0:2E0:F:D::1/80
+!
+!
+multilink bundle-name authenticated
+!
+crypto pki token default removal timeout 0
+!
+!
+!
+!
+license udi pid CISCO1841 sn FTX1405Y2LE
+!
+redundancy
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface FastEthernet0/0
+ no ip address
+ duplex auto
+ speed auto
+!
+interface FastEthernet0/0.1
+ encapsulation dot1Q 1 native
+ ip address 172.16.10.1 255.255.255.0
+ ip helper-address 172.16.40.2
+ ipv6 address 2801:0:2E0:F:A::1/80
+ ipv6 enable
+ ipv6 nd managed-config-flag
+ ipv6 nd other-config-flag
+ ipv6 dhcp server Enlaces
+!
+interface FastEthernet0/0.2
+ encapsulation dot1Q 2
+ ip address 172.16.20.1 255.255.255.0
+ ip helper-address 172.16.40.2
+ ipv6 address 2801:0:2E0:F:B::1/80
+ ipv6 enable
+ ipv6 nd managed-config-flag
+ ipv6 nd other-config-flag
+ ipv6 dhcp server Users
+!
+interface FastEthernet0/0.3
+ encapsulation dot1Q 3
+ ip address 172.16.30.1 255.255.255.0
+ ip helper-address 172.16.40.2
+ ipv6 address 2801:0:2E0:F:C::1/80
+ ipv6 enable
+ ipv6 nd managed-config-flag
+ ipv6 nd other-config-flag
+ ipv6 dhcp server Admin
+!
+interface FastEthernet0/0.4
+ encapsulation dot1Q 4
+ ip address 172.16.40.1 255.255.255.0
+ ip helper-address 172.16.40.2
+ ipv6 address 2801:0:2E0:F:D::1/80
+ ipv6 enable
+ ipv6 nd managed-config-flag
+ ipv6 nd other-config-flag
+ ipv6 dhcp server Server
+!
+interface FastEthernet0/1
+ no ip address
+ duplex auto
+ speed auto
+!
+interface FastEthernet0/1.1
+ encapsulation dot1Q 1 native
+ ip address 172.17.10.1 255.255.255.0
+ ip helper-address 172.17.40.2
+ ipv6 address 2801:0:2E0:A:A::1/80
+ ipv6 enable
+ ipv6 nd managed-config-flag
+ ipv6 nd other-config-flag
+ ipv6 dhcp server Conexiones
+!
+interface FastEthernet0/1.2
+ encapsulation dot1Q 2
+ ip address 172.17.20.1 255.255.255.0
+ ip helper-address 172.17.40.2
+ ipv6 address 2801:0:2E0:A:B::1/80
+ ipv6 enable
+ ipv6 nd managed-config-flag
+ ipv6 nd other-config-flag
+ ipv6 dhcp server Administradores
+!
+interface FastEthernet0/1.3
+ encapsulation dot1Q 3
+ ip address 172.17.30.1 255.255.255.0
+ ip helper-address 172.17.40.2
+ ipv6 address 2801:0:2E0:A:C::1/80
+ ipv6 enable
+ ipv6 nd managed-config-flag
+ ipv6 nd other-config-flag
+ ipv6 dhcp server Usuarios
+!
+interface FastEthernet0/1.4
+ encapsulation dot1Q 4
+ ip address 172.17.40.1 255.255.255.0
+ ip helper-address 172.17.40.2
+ ipv6 address 2801:0:2E0:A:D::1/80
+ ipv6 enable
+ ipv6 nd managed-config-flag
+ ipv6 nd other-config-flag
+ ipv6 dhcp server Servidores
+!
+interface Serial0/0/0
+ ip address 10.10.0.1 255.255.255.252
+ ipv6 address 2801:0:2E0:1::1/126
+ ipv6 enable
+ ipv6 ospf 1 area 0
+ no fair-queue
+ clock rate 2000000
+!
+interface Serial0/1/0
+ no ip address
+ shutdown
+ clock rate 2000000
+!
+router ospf 1
+ network 10.10.0.0 0.0.0.3 area 0
+ network 172.16.0.0 0.0.255.255 area 0
+ network 172.17.0.0 0.0.255.255 area 0
+!
+ip forward-protocol nd
+no ip http server
+no ip http secure-server
+!
+!
+!
+ipv6 router ospf 1
+!
+!
+!
+!
+!
+!
+!
+control-plane
+!
+!
+!
+line con 0
+line aux 0
+line vty 0 4
+ login
+ transport input all
+!
+scheduler allocate 20000 1000
+end
+
+Router#

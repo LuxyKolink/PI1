@@ -1,0 +1,327 @@
+SW-Concesionario#sh run
+Building configuration...
+
+Current configuration : 3695 bytes
+!
+version 12.2
+no service pad
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname SW-Concesionario
+!
+boot-start-marker
+boot-end-marker
+!
+!
+no aaa new-model
+system mtu routing 1500
+ip subnet-zero
+!
+!
+!
+!
+crypto pki trustpoint TP-self-signed-528109184
+ enrollment selfsigned
+ subject-name cn=IOS-Self-Signed-Certificate-528109184
+ revocation-check none
+ rsakeypair TP-self-signed-528109184
+!
+!
+crypto pki certificate chain TP-self-signed-528109184
+ certificate self-signed 01
+  30820247 308201B0 A0030201 02020101 300D0609 2A864886 F70D0101 04050030
+  30312E30 2C060355 04031325 494F532D 53656C66 2D536967 6E65642D 43657274
+  69666963 6174652D 35323831 30393138 34301E17 0D393330 33303130 30303035
+  355A170D 32303031 30313030 30303030 5A303031 2E302C06 03550403 1325494F
+  532D5365 6C662D53 69676E65 642D4365 72746966 69636174 652D3532 38313039
+  31383430 819F300D 06092A86 4886F70D 01010105 0003818D 00308189 02818100
+  AFF84A05 13D27601 05CEC2E5 FBD933C8 DCC91A30 D0C6C82D 4E04D812 8CD841EB
+  EFB2E7FE 35D905CA 02BC0739 1B5D3207 20905273 7EECD563 6425CEB5 C4CCE55E
+  4C4BC1ED D1956CC1 DBFBDCE8 FCB16B1A 98C37F29 FEE5D22E 7C37FCD6 654DEEED
+  FC86F0D9 06DB71E3 61169B85 B69AA14A 22E39D91 F671C28D 7A49D5C1 31C67289
+  02030100 01A37130 6F300F06 03551D13 0101FF04 05300301 01FF301C 0603551D
+  11041530 13821153 572D436F 6E636573 696F6E61 72696F2E 301F0603 551D2304
+  18301680 147ECE37 48ADB5D2 9CE41933 216E6D92 09C09DFA 5F301D06 03551D0E
+  04160414 7ECE3748 ADB5D29C E4193321 6E6D9209 C09DFA5F 300D0609 2A864886
+  F70D0101 04050003 81810046 10EB3966 886BA91F 030A15B7 23529701 066A33C6
+  D2EEA29E 5983338E 3F0402B2 5E868F9D 2EB1770A 04B51802 9BC33429 DFCA7B39
+  C54C77AC 34BD3AF4 23ABB9CB E9C3222E 6375981B 8680D233 1256DBF2 1AA64C0F
+  A24D1D6D 60320C15 A6D1E487 A88263F0 5656D8FB 77031C82 9D4E1001 2148166F
+  0E5945EB 6DFCECAB 5C7668
+  quit
+!
+!
+!
+!
+!
+spanning-tree mode pvst
+spanning-tree extend system-id
+!
+vlan internal allocation policy ascending
+!
+!
+!
+interface FastEthernet0/1
+ switchport access vlan 2
+ switchport mode access
+!
+interface FastEthernet0/2
+ switchport access vlan 2
+ switchport mode access
+!
+interface FastEthernet0/3
+ switchport access vlan 2
+ switchport mode access
+!
+interface FastEthernet0/4
+ switchport access vlan 2
+ switchport mode access
+!
+interface FastEthernet0/5
+!
+interface FastEthernet0/6
+!
+interface FastEthernet0/7
+!
+interface FastEthernet0/8
+!
+interface FastEthernet0/9
+!
+interface FastEthernet0/10
+!
+interface FastEthernet0/11
+ switchport access vlan 3
+ switchport mode access
+!
+interface FastEthernet0/12
+ switchport access vlan 3
+ switchport mode access
+!
+interface FastEthernet0/13
+ switchport access vlan 3
+ switchport mode access
+!
+interface FastEthernet0/14
+ switchport access vlan 3
+ switchport mode access
+!
+interface FastEthernet0/15
+!
+interface FastEthernet0/16
+!
+interface FastEthernet0/17
+!
+interface FastEthernet0/18
+!
+interface FastEthernet0/19
+ switchport trunk allowed vlan 1-4
+ switchport mode trunk
+!
+interface FastEthernet0/20
+ switchport trunk allowed vlan 1-4
+ switchport mode trunk
+!
+interface FastEthernet0/21
+ switchport access vlan 4
+ switchport mode access
+!
+interface FastEthernet0/22
+ switchport access vlan 4
+ switchport mode access
+!
+interface FastEthernet0/23
+ switchport access vlan 4
+ switchport mode access
+!
+interface FastEthernet0/24
+ switchport access vlan 4
+ switchport mode access
+!
+interface GigabitEthernet0/1
+!
+interface GigabitEthernet0/2
+!
+interface Vlan1
+ ip address 172.16.10.2 255.255.255.0
+ no ip route-cache
+!
+ip http server
+ip http secure-server
+!
+control-plane
+!
+!
+line con 0
+line vty 0 4
+ login
+line vty 5 15
+ login
+!
+end
+
+SW-Concesionario#sh run
+Building configuration...
+
+Current configuration : 3695 bytes
+!
+version 12.2
+no service pad
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname SW-Concesionario
+!
+boot-start-marker
+boot-end-marker
+!
+!
+no aaa new-model
+system mtu routing 1500
+ip subnet-zero
+!
+!
+!
+!
+crypto pki trustpoint TP-self-signed-528109184
+ enrollment selfsigned
+ subject-name cn=IOS-Self-Signed-Certificate-528109184
+ revocation-check none
+ rsakeypair TP-self-signed-528109184
+!
+!
+crypto pki certificate chain TP-self-signed-528109184
+ certificate self-signed 01
+  30820247 308201B0 A0030201 02020101 300D0609 2A864886 F70D0101 04050030
+  30312E30 2C060355 04031325 494F532D 53656C66 2D536967 6E65642D 43657274
+  69666963 6174652D 35323831 30393138 34301E17 0D393330 33303130 30303035
+  355A170D 32303031 30313030 30303030 5A303031 2E302C06 03550403 1325494F
+  532D5365 6C662D53 69676E65 642D4365 72746966 69636174 652D3532 38313039
+  31383430 819F300D 06092A86 4886F70D 01010105 0003818D 00308189 02818100
+  AFF84A05 13D27601 05CEC2E5 FBD933C8 DCC91A30 D0C6C82D 4E04D812 8CD841EB
+  EFB2E7FE 35D905CA 02BC0739 1B5D3207 20905273 7EECD563 6425CEB5 C4CCE55E
+  4C4BC1ED D1956CC1 DBFBDCE8 FCB16B1A 98C37F29 FEE5D22E 7C37FCD6 654DEEED
+  FC86F0D9 06DB71E3 61169B85 B69AA14A 22E39D91 F671C28D 7A49D5C1 31C67289
+  02030100 01A37130 6F300F06 03551D13 0101FF04 05300301 01FF301C 0603551D
+  11041530 13821153 572D436F 6E636573 696F6E61 72696F2E 301F0603 551D2304
+  18301680 147ECE37 48ADB5D2 9CE41933 216E6D92 09C09DFA 5F301D06 03551D0E
+  04160414 7ECE3748 ADB5D29C E4193321 6E6D9209 C09DFA5F 300D0609 2A864886
+  F70D0101 04050003 81810046 10EB3966 886BA91F 030A15B7 23529701 066A33C6
+  D2EEA29E 5983338E 3F0402B2 5E868F9D 2EB1770A 04B51802 9BC33429 DFCA7B39
+  C54C77AC 34BD3AF4 23ABB9CB E9C3222E 6375981B 8680D233 1256DBF2 1AA64C0F
+  A24D1D6D 60320C15 A6D1E487 A88263F0 5656D8FB 77031C82 9D4E1001 2148166F
+  0E5945EB 6DFCECAB 5C7668
+  quit
+!
+!
+!
+!
+!
+spanning-tree mode pvst
+spanning-tree extend system-id
+!
+vlan internal allocation policy ascending
+!
+!
+!
+interface FastEthernet0/1
+ switchport access vlan 2
+ switchport mode access
+!
+interface FastEthernet0/2
+ switchport access vlan 2
+ switchport mode access
+!
+interface FastEthernet0/3
+ switchport access vlan 2
+ switchport mode access
+!
+interface FastEthernet0/4
+ switchport access vlan 2
+ switchport mode access
+!
+interface FastEthernet0/5
+!
+interface FastEthernet0/6
+!
+interface FastEthernet0/7
+!
+interface FastEthernet0/8
+!
+interface FastEthernet0/9
+!
+interface FastEthernet0/10
+!
+interface FastEthernet0/11
+ switchport access vlan 3
+ switchport mode access
+!
+interface FastEthernet0/12
+ switchport access vlan 3
+ switchport mode access
+!
+interface FastEthernet0/13
+ switchport access vlan 3
+ switchport mode access
+!
+interface FastEthernet0/14
+ switchport access vlan 3
+ switchport mode access
+!
+interface FastEthernet0/15
+!
+interface FastEthernet0/16
+!
+interface FastEthernet0/17
+!
+interface FastEthernet0/18
+!
+interface FastEthernet0/19
+ switchport trunk allowed vlan 1-4
+ switchport mode trunk
+!
+interface FastEthernet0/20
+ switchport trunk allowed vlan 1-4
+ switchport mode trunk
+!
+interface FastEthernet0/21
+ switchport access vlan 4
+ switchport mode access
+!
+interface FastEthernet0/22
+ switchport access vlan 4
+ switchport mode access
+!
+interface FastEthernet0/23
+ switchport access vlan 4
+ switchport mode access
+!
+interface FastEthernet0/24
+ switchport access vlan 4
+ switchport mode access
+!
+interface GigabitEthernet0/1
+!
+interface GigabitEthernet0/2
+!
+interface Vlan1
+ ip address 172.16.10.2 255.255.255.0
+ no ip route-cache
+!
+ip http server
+ip http secure-server
+!
+control-plane
+!
+!
+line con 0
+line vty 0 4
+ login
+line vty 5 15
+ login
+!
+end
+
+SW-Concesionario#
